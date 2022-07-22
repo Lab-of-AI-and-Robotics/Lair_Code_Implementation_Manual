@@ -145,6 +145,7 @@
   - kitti_helper.launch이 gedit으로 열리게되면, \<param name="dataset_folder" type="string" value="/data/KITTI/odometry/" />에서 value를 수정한다. 이때, value의 값을 이전에 압축해제한 dataset폴더위치/dataset/으로 하도록 한다.
   ex) \<param name="dataset_folder" type="string" value="~/data/dataset/" />
   <br/>
+  
   - **수정 전**
   ```
   <launch>
@@ -162,7 +163,7 @@
   ```
   <launch>
       <node name="kittiHelper" pkg="aloam_velodyne" type="kittiHelper" output="screen">
-          <param name="dataset_folder" type="string" value="~/data/dataset/" />
+          <param name="dataset_folder" type="string" value="/home/user/data/dataset/" />
           # 해당 명령어의 value를 dataset폴더위치/dataset/ 로 지정
 
           <param name="sequence_number" type="string" value="00" />
