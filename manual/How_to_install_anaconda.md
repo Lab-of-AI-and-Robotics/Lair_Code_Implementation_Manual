@@ -1,0 +1,72 @@
+
+# anaconda install
+
+## 1. how to install Anaconda
+
+  1. Access Anaconda official website
+  [https://www.anaconda.com/](https://www.anaconda.com/)
+  <br/>
+
+  2. download Anaconda3 installer
+  **Anaconda3-\*\*-Linux-\*\*.sh** download
+  <br/>
+
+  3. open terminal and input commend
+  ```
+  $ cd ~/Downloads
+  $ chmod 777 Anaconda3-**-Linux-**.sh
+  $ ./Anaconda3-**-Linux-**.sh
+  ```
+
+  4. Follow the commands in the terminal window
+  (input ENTER or y)
+  <br/>
+
+  5. Installation complete and open a new terminal to confirm
+  ```
+  (base) user@user:~$
+  ```
+
+
+## 2. Anaconda command line
+
+1. create Anaconda environments
+  ```
+  $ conda create -n ENVIRONMENT_NAME python=PYTHON_VERSION
+  ```
+
+2. activate Anaconda environments
+  ```
+  $ conda activate ENVIRONMENT_NAME
+  ```
+3. deactivate Anaconda environments
+  ```
+  $ conda deactivate
+  ```
+
+4. install package
+```
+$ conda install PACKAGE_NAME
+```
+  - delete package
+  ```
+  $ conda uninstall PACKAGE_NAME
+  ```
+  - or you can use pip install
+
+5. search package's version to install
+```
+$ conda search PACKAGE_NAME
+```
+- ex) CUDA toolkit install
+```
+$ conda create -n test_env python=3.9.15
+$ conda activate test_env
+$ conda search cudatoolkit
+$ conda install cudatoolkit=CUDA_VERSION
+```
+
+7. delete Anaconda environments
+```
+$ conda env remove -n 가상환경이름
+```
