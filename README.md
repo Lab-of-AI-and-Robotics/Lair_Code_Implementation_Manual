@@ -10,7 +10,7 @@ This manual repository explain how to installation basic file or how to implemen
       - [2. How\_to\_install\_ros](#2-how_to_install_ros)
       - [3. How\_to\_implement\_velodyne](#3-how_to_implement_velodyne)
       - [4. How\_to\_implement\_A\_loam](#4-how_to_implement_a_loam)
-      - [5. How\_to\_implement\_Lego\_loam](#5-how_to_implement_lego_loam)
+      - [5. How\_to\_implement\_DepthCamera](#5-how_to_implement_depthcamera)
       - [6. How\_to\_use\_omorobot\_controller](#6-how_to_use_omorobot_controller)
       - [7. How\_to\_synchronize\_LiDAR\_and\_IMU](#7-how_to_synchronize_lidar_and_imu)
       - [8. How\_to\_implement\_LIO-SAM\_and\_FAST-LIO](#8-how_to_implement_lio-sam_and_fast-lio)
@@ -33,7 +33,7 @@ This manual explain how to connect velodyne(16) to desktop and visualize using r
 #### [4. How_to_implement_A_loam](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/4.%20How_to_implement_A_loam.md)
 This manual explain how to implement A_loam with kitti dataset and velodyne dataset by connect desktop.
 
-#### [5. How_to_implement_Lego_loam](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/5.%20How_to_implement_DepthCamera.md)
+#### [5. How_to_implement_DepthCamera](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/5.%20How_to_implement_DepthCamera.md)
 
 #### [6. How_to_use_omorobot_controller](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/6.%20How_to_use_omorobot_controller.md)
 
