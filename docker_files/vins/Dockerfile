@@ -3,12 +3,14 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Default settings
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y curl wget
+RUN apt-get install -y curl wget gedit
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 WORKDIR /
 RUN mkdir -p catkin_ws/src
+## realsense driver
+RUN apt-get install -y ros-melodic-realsense2-camera
 
 # VINS-RGBD
 ## Ceres
