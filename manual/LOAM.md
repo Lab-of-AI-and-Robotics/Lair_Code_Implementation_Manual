@@ -70,3 +70,22 @@
     ```bash
     
     ```
+
+### Known issues
+- "docker exec -it loam /bin/bash" is not working with below error message.
+    ```bash
+    Error response from daemon: Container 13b80ddc4587e65441f690bc6c011eeb5626b01addabb4ebcb2c0386c595135b is not running
+    ```
+    - This issue occurs because the Docker container has been terminated. One need to run docker container with the command below.
+        ```bash
+        docker start loam
+        ```
+- rviz is not working with below error message.
+  ```bash
+  qt.qpa.screen: QXcbConnection: Could not connect to display :0
+  Could not connect to any X display.
+  ```
+  - run this command on "original environment", not on container.
+    ```bash
+    xhost +
+    ```

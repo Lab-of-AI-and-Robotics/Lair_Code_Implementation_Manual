@@ -89,13 +89,13 @@
     ```
 
 ### Known issues
-- "docker exec -it vins /bin/bash" is not working with below error message.
+- "docker exec -it lio /bin/bash" is not working with below error message.
     ```bash
     Error response from daemon: Container 13b80ddc4587e65441f690bc6c011eeb5626b01addabb4ebcb2c0386c595135b is not running
     ```
     - This issue occurs because the Docker container has been terminated. One need to run docker container with the command below.
         ```bash
-        docker start vins
+        docker start lio
         ```
 - rviz is not working with below error message.
   ```bash
