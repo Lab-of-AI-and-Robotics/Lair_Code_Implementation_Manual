@@ -46,7 +46,7 @@ lio_sam:
 
   # Topics
   pointCloudTopic: "Pointcloud 토픽명 ex)ouster/points"               # Point cloud data
-  imuTopic: "IMU 토픽명 ex>imu"                                       # IMU data
+  imuTopic: "IMU 토픽명 ex)imu"                                       # IMU data
   odomTopic: "odometry/imu"                                          # IMU pre-preintegration odometry, same frequency as IMU
   gpsTopic: "odometry/gpsz"
 ```

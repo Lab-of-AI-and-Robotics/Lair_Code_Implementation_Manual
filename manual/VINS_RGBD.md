@@ -75,7 +75,7 @@
     rosbag play /dataset/vins_test.bag
     ```
 
-### Expected issues
+### Known issues
 - "docker exec -it vins /bin/bash" is not working with below error message.
     ```bash
     Error response from daemon: Container 13b80ddc4587e65441f690bc6c011eeb5626b01addabb4ebcb2c0386c595135b is not running
@@ -84,7 +84,11 @@
         ```bash
         docker start vins
         ```
-- rviz is not working
+- rviz is not working with below error message.
+  ```bash
+  qt.qpa.screen: QXcbConnection: Could not connect to display :0
+  Could not connect to any X display.
+  ```
   - run this command on "original environment", not on container.
     ```bash
     xhost +

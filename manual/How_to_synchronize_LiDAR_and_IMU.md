@@ -109,5 +109,4 @@ void convert_scan_to_pointcloud_publish(uint64_t scan_ts,
 다른 파일들도 “header.stamp” 검색해서 ros::Time::now() 값이 들어가도록 바꿔주기
 
 ### 방법 2 : 수정된 코드 다운
-
-업데이트 예정
+Todo

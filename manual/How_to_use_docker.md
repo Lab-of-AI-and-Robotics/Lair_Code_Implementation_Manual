@@ -33,7 +33,7 @@ docker --version
 ### Docker without sudo
 ```bash
 sudo usermod -aG docker ${USER}
-# restart
+# reboot
 ```
 
 ### To use gui in docker environment
