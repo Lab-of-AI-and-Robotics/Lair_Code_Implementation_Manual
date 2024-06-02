@@ -1,70 +1,61 @@
 last update 2023 7.24 by Seongbo Ha. <br>
 
-## 개요
-
-
-### 목적
-
-- LiDAR와 IMU를 함께 사용하는 SLAM(LIO-SAM, FAST-LIO)들의 경우 LiDAR와 IMU를 동기화시켜야 함
-- 즉 pointcloud message와 imu message의 timestamp에 같은 시점이 기록되어야 한다
-
-LiDAR message
-
-**sensor_msgs/PointCloud2.msg**
-
-```cpp
-형식                       이름
-std_msgs/Header            header     <---
-uint32                     height
-uint32                     width
-sensor_msgs/PointField[]   fields
-bool                       is_bigendian
-uint32                     point_step
-uint32                     row_step
-uint8[]                    data
-bool                       is_dense
-```
-
-IMU message
-
-**sensor_msgs/Imu.msg**
-
-```cpp
-형식                       이름
-std_msgs/Header            header         <---
-geometry_msgs/Quaternion   orientation
-float64[9]                 orientation_covariance
-geometry_msgs/Vector3      angular_velocity
-float64[9]                 angular_velocity_covariance
-geometry_msgs/Vector3      linear_acceleration
-float64[9]                 linear_acceleration_covariance
-```
-
-- 두 message에는 공통적으로 header 항목이 존재하고, header에 timestamp가 기록된다
-
-**std_msgs/Header.msg**
-
-```cpp
-uint32 seq
-time stamp     <---
-string frame_id
-```
-
 ### 문제
+- 실제 LiDAR, IMU를 활용해서 LIO-SAM, Fast-LIO를 작동시키는데 문제 발생
+  - LIO-SAM: 무응답
+  - Fast-LIO: "not enough feature"(정확하지 않음) 경고 메시지가 계속해서 출력되며 SLAM 동작 x
 
+### 확인된 원인
+- LiDAR, IMU 데이터가 담긴 두 message에는 공통적으로 header 항목이 존재하고, header에 timestamp가 기록됨
 - IMU driver는 정상적으로 timestamp를 기록하여 message를 전송
-- 하지만 Ouster LiDAR driver가 이상한 시점의 timestamp를 기록해 message를 전송
-    
-    —> 두 message의 timestamp가 맞지 않아 SLAM이 원활하게 작동하지 않는다
+- 하지만 LiDAR driver가 이상한 시점의 timestamp를 기록해 message를 전송
+    -> 두 message의 timestamp가 맞지 않아 SLAM이 원활하게 작동하지 않는다
+    **std_msgs/Header.msg**
+
+    ```cpp
+    uint32 seq
+    time stamp     <---
+    string frame_id
+    ```
+    - LiDAR message
+
+        **sensor_msgs/PointCloud2.msg**
+
+        ```cpp
+        형식                       이름
+        std_msgs/Header            header     <---
+        uint32                     height
+        uint32                     width
+        sensor_msgs/PointField[]   fields
+        bool                       is_bigendian
+        uint32                     point_step
+        uint32                     row_step
+        uint8[]                    data
+        bool                       is_dense
+        ```
+
+    - IMU message
+        **sensor_msgs/Imu.msg**
+
+        ```cpp
+        형식                       이름
+        std_msgs/Header            header         <---
+        geometry_msgs/Quaternion   orientation
+        float64[9]                 orientation_covariance
+        geometry_msgs/Vector3      angular_velocity
+        float64[9]                 angular_velocity_covariance
+        geometry_msgs/Vector3      linear_acceleration
+        float64[9]                 linear_acceleration_covariance
+        ```
     
 
 ## 해결방법
-
-
-- Ouster LiDAR의 driver를 수정해 올바른 timestamp를 기록하도록 해야 함
+- LiDAR와 IMU를 함께 사용하는 SLAM(LIO-SAM, FAST-LIO)들의 경우 LiDAR와 IMU를 동기화시켜야 함
+- 즉 pointcloud message와 imu message의 timestamp에 같은 시점이 기록되어야 한다
+- LiDAR의 driver를 수정해 올바른 timestamp를 기록하도록 해야 함
 - 직접 수정 or 수정된 코드 다운
 
-### 방법 1 : 직접 수정
+### 방법 1 : 직접 수정 (Ouster)
 
 - Ouster ROS driver 다운로드
 
