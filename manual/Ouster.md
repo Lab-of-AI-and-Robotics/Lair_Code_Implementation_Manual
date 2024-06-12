@@ -14,7 +14,7 @@
   - Set IP address/net mask
     Fig.4
     Set IP address as $\color{red}\text{192.168.1.x}$, and net mask as 255.255.255.0
-    This IP address will be used as $\color{red}\text{udp\_dest}$ for ROS driver!
+    This IP address will be used as $\color{red}{udp\_dest}$ for ROS driver!
 - Assign IP address to LiDAR
   - Check port name by using below command
     ```bash
@@ -29,13 +29,13 @@
     # ex)
     sudo dnsmasq -C /dev/null -kd -F 192.168.1.0,192.168.1.100 -i eno1 --bind-dynamic
     ```
-    After a while... The IP address assigned to the LiDAR will be showed. (In the example case, $\color{blue}\text{192.168.1.75}$) And this address will be used as $\color{blue}\text{sensor\_hostname}$ for ROS driver!
+    After a while... The IP address assigned to the LiDAR will be showed. (In the example case, $\color{blue}\text{192.168.1.75}$) And this address will be used as $\color{blue}{sensor\_hostname}$ for ROS driver!
     Fig.6
 
 ## ROS driver
 - clone the [driver repo](https://github.com/Lab-of-AI-and-Robotics/Ouster_driver.git) and build it.
 - launch
-    Launch driver with $\color{blue}\text{sensor\_hostname}$ and $\color{red}\text{udp\_dest}$ address which we set in the previous step.
+    Launch driver with $\color{blue}{sensor\_hostname}$ and $\color{red}{udp\_dest}$ address which we set in the previous step.
     ```bash
     roslaunch ouster_ros sensor.launch sensor_hostname:="192.168.1.75" udp_dest:="192.168.1.100" viz:=true
     ```
