@@ -18,13 +18,15 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:borglab/gtsam-release-4.0
 RUN apt install -y libgtsam-dev libgtsam-unstable-dev
 
-# LIO-SAM
-## git clone
+# clone LIO-SAM
 WORKDIR /catkin_ws/src
 RUN git clone https://github.com/Lab-of-AI-and-Robotics/LIO-SAM_ouster.git
-## build
-WORKDIR /catkin_ws
-RUN /bin/bash -c ". /opt/ros/melodic/setup.bash; cd /catkin_ws; catkin_make"
+# clone Ouster ros driver
+RUN git clone https://github.com/Lab-of-AI-and-Robotics/Ouster_driver.git
+
+# build
+# RUN /bin/bash -c ". /opt/ros/melodic/setup.bash; cd /catkin_ws; catkin_make"
+RUN /bin/bash -c ". /opt/ros/melodic/setup.bash; cd /catkin_ws; catkin_make --cmake-args -DCMAKE_BUILD_TYPE=Release"
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 

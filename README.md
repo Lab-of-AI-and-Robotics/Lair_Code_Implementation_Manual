@@ -13,8 +13,9 @@ This manual repository explain how to installation basic file or how to implemen
   
 
     - Sensor/Robots
-      - [How\_to\_implement\_velodyne](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_implement_velodyne.md)
-      - [How\_to\_implement\_DepthCamera](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_implement_DepthCamera.md)
+      - [Velodyne](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_implement_velodyne.md)
+      - [Ouster](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/Ouster.md)
+      - [Realsense d435i](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_implement_DepthCamera.md)
       - [How\_to\_synchronize\_LiDAR\_and\_IMU](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_synchronize_LiDAR_and_IMU.md)
       - [How\_to\_use\_omorobot\_controller](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_use_omorobot_controller.md)
   

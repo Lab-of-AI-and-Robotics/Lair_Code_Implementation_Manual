@@ -1,4 +1,10 @@
 # LOAM with Ouster 64ch
+### Contents
+  - Environmental Settings
+  - Run
+    - with demo data
+    - with real sensor
+
 ### Environmental Settings (Docker)
 
 - Build docker image from Dockerfile
@@ -29,7 +35,7 @@
   Like this
   ![loam](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/assets/34827206/2c9eb699-2cab-4bcf-bfd3-563fcc4095b6)
 
-### With demo rosbag file
+#### With demo rosbag file
 - Rosbag file for demo is downloaded in the container. (/dataset/vins_test.bag)
 - As mentioned above, we use two separate terminals
   - Terminal 1 (launch A-LOAM)
@@ -46,8 +52,10 @@
   - Expected result
     ![Screenshot from 2024-05-30 10-57-52](https://github.com/Lab-of-AI-and-Robotics/A-LOAM_ouster64ch/assets/34827206/27698594-7d28-4d6a-b2df-06ed7368b278)
 
-### With user's own LiDAR
-- Edit topic name in the launch file (launch/ouster.launch)
+#### With user's own LiDAR
+- Connect LiDAR and setup driver
+  - Please follow this [guide](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/Ouster.md).
+- Edit topic name in the launch file (launch/ouster.launch) (if needed)
   ```yaml
   <param name="minimum_range" type="double" value="1"/>
 
@@ -68,7 +76,7 @@
     ```
   - Terminal 2 (launch ouster driver)
     ```bash
-    
+    roslaunch ouster_ros sensor.launch sensor_hostname:="your address" udp_dest:="your address"
     ```
 
 ### Known issues

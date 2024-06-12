@@ -29,13 +29,10 @@ WORKDIR /catkin_ws/src
 RUN git clone https://github.com/Lab-of-AI-and-Robotics/A-LOAM_ouster64ch.git
 
 # Ouster ros driver
-# ## Dependencies
-# RUN apt-get install -y build-essential libjsoncpp-dev libspdlog-dev libcurl4-openssl-dev
-# ## git clone
-# RUN git clone --recurse-submodules https://github.com/ouster-lidar/ouster-ros.git
+RUN git clone https://github.com/Lab-of-AI-and-Robotics/Ouster_driver.git
 
-
-RUN /bin/bash -c ". /opt/ros/melodic/setup.bash; cd /catkin_ws; catkin_make"
+# Build ROS packages
+RUN /bin/bash -c ". /opt/ros/melodic/setup.bash; cd /catkin_ws; catkin_make --cmake-args -DCMAKE_BUILD_TYPE=Release"
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 # Download Demo data
@@ -44,6 +41,5 @@ RUN mkdir dataset
 WORKDIR /dataset
 RUN wget -O ouster_64.bag "https://data.ouster.io/sample-data-1.13/OS1-64/OS1-64_freeway2.bag"
 
-# 
-
+# init
 WORKDIR /
