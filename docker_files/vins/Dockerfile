@@ -34,7 +34,7 @@ WORKDIR /
 RUN rm -rf /Sophus
 ## clone vins-rgbd repo
 WORKDIR /catkin_ws/src
-RUN git clone https://github.com/Lab-of-AI-and-Robotics/VINS-RGBD.git
+RUN git clone https://github.com/Lab-of-AI-and-Robotics/VINS_RGBD.git
 ## build
 WORKDIR /catkin_ws
 RUN /bin/bash -c ". /opt/ros/melodic/setup.bash; cd /catkin_ws; catkin_make"
