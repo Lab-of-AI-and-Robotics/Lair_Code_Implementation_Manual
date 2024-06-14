@@ -12,6 +12,7 @@
   
   ```
     docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /dev:/dev \
     -e DISPLAY=$DISPLAY -e USER=$USER \
     -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
     NVIDIA_VISIBLE_DEVICES=all \
