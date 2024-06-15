@@ -1,5 +1,5 @@
 # LIO_SAM
-2024.05.29, updated by Seungjun Tak.
+2024.05.29, updated by Seungjun Tak. </br>
 2024.06.15, updated by Seongbo Ha.
 
 ## Environmental Settings (Docker)
