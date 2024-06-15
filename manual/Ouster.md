@@ -1,4 +1,6 @@
 # Ouster
+2024.06.15, updated by Seongbo Ha.
+
 ## Including features
 - Connecting Ouster LiDAR
 - ROS driver

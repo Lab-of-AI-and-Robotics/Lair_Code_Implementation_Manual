@@ -1,6 +1,8 @@
 # LIO_SAM
+2024.05.29, updated by Seungjun Tak.
+2024.06.15, updated by Seongbo Ha.
 
-### Environmental Settings (Docker)
+## Environmental Settings (Docker)
 
 - Build docker image from Dockerfile
     - LIO_SAM and requirements will be installed in the docker image.
@@ -21,8 +23,8 @@
   ```
 
   
-### RUN
-#### With demo data
+## RUN
+### With demo data
 - Download Data
    - We should Download Dataset for LIO-SAM
      - Enter https://drive.google.com/drive/folders/1gJHwfdHCRdjP7vuT556pv8atqrCJPbUq
@@ -43,7 +45,7 @@
     ```
   - Terminal 1(launch LIO-SAM)
     ```bash
-    roslaunch lio_sam run.launch
+    roslaunch lio_sam run_demo.launch
     ```
   - Terminal 2(play rosbag file)
     ```bash
@@ -52,8 +54,24 @@
 - Expected Results
   ![alt text](LIO_SAM.png)
 
-#### With user's own LiDAR
-- Edit config file(LIO-SAM/config/params.yaml)
+### With user's sensors
+#### Connect sensors
+- LiDAR (Ouster)
+  - Follow this [page](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/Ouster.md).
+  - ROS driver for Ouster LiDAR is already installed in the docker environment.
+    
+- IMU (witmotion bt901cl)
+  - Connect IMU to the desktop, and check if the IMU is connected properly with below command.
+    ```bash
+    ls /dev/ttyUSB*
+    ```
+    Go to the next step if you get a message like this.
+    ```bash
+    /dev/ttyUSB0
+    ```  
+  - ROS driver for IMU is already installed in the docker environment.
+
+#### Edit config file(LIO-SAM/config/params_custom.yaml)
   - Topic names
     - Align topic names
     ```yaml
@@ -75,21 +93,41 @@
     lidarMaxRange: 1000.0
     ```
   - LiDAR - IMU calibration
-    - Get extrinsic parameters between LiDAR and IMU by utilizing this [repository](https://github.com/chennuo0125-HIT/lidar_imu_calib.git).
-      - We can get only extrinsic rotation parameters by using this repo.
+    - Get extrinsic parameters between LiDAR and IMU by following this [material](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/LiDAR-IMU_calibration.md).
+      - We can only get extrinsic rotation parameters by using this repo.
     - Then edit extrinsic parameters in the configuration file.
     ```yaml
     # Extrinsics: T_lb (lidar -> imu)
       extrinsicTrans: [0.0, 0.0, 0.0]            
-      extrinsicRot: [-1, 0, 0,   
-                      0, 1, 0,
-                      0, 0, -1]
-      extrinsicRPY: [0, -1, 0,
-                    1, 0, 0,
+      extrinsicRot: [-1, 0, 0,    # <----- Edit this parameter!!! 
+                      0, 1, 0,    # <-----
+                      0, 0, -1]   # <-----
+      extrinsicRPY: [1, 0, 0,
+                    0, 1, 0,
                     0, 0, 1]
     ```
+#### Run
+  - Open three terminals and insert the command below to access the docker container.
+    ```bash
+    docker exec -it lio /bin/bash
+    ```
+  - Terminal 1 (launch IMU driver)
+    ```bash
+    sudo chmod a+w+r+x /dev/ttyUSB0
+    roslaunch witmotion_ros lair.launch
+    ```
+  - Terminal 2 (launch LiDAR driver)
+    ```bash
+    # roslaunch ouster_ros sensor.launch sensor_hostname:=[your address] udp_dest:=[your address]
+    roslaunch ouster_ros sensor.launch sensor_hostname:="192.168.1.75" udp_dest:="192.168.1.100"
+    ```
+  - Terminal 3 (launch LIO-SAM)
+    ```bash
+    roslaunch lio_sam run_custom.launch
+    ```
 
-### Known issues
+
+## Known issues
 - "docker exec -it lio /bin/bash" is not working with below error message.
     ```bash
     Error response from daemon: Container 13b80ddc4587e65441f690bc6c011eeb5626b01addabb4ebcb2c0386c595135b is not running

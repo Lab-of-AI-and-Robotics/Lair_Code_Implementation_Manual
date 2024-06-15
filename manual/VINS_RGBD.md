@@ -1,4 +1,5 @@
 # VINS_RGBD
+2024.06.15, updated by Seongbo Ha.
 
 ### Environmental Settings (Docker)
 
@@ -57,7 +58,8 @@
 
 #### With realsense 435i
 - Connect realsense camera.
-- As mentioned above, we use three separate terminals
+- ROS driver for realsense camera is already installed in the docker env.
+- We need three separate terminals
   - Terminal 1
     - Launch realsense ros driver with below command.
     ```bash
@@ -65,15 +67,18 @@
     depth_width:=640 depth_height:=480 \
     color_width:=640 color_height:=480 \
     align_depth:=true color_fps:=30 depth_fps:=30 \
-    enable_sync:=true clip_distance:=1.5
+    enable_sync:=true clip_distance:=1.5 \
+    unite_imu_method:="linear_interpolation" \
+    enable_gyro:=true enable_accel:=true \
+    accel_fps:=250 gyro_fps:=200
     ```
   - Terminal 2 (run rviz for visualization)
     ```bash
     roslaunch vins_estimator vins_rviz.launch
     ```
-  - Terminal 3 (play rosbag file)
+  - Terminal 3 (launch VINS-RGBD)
     ```bash
-    rosbag play /dataset/vins_test.bag
+    roslaunch vins_estimator realsense_color.launch
     ```
 
 ### Known issues
@@ -94,3 +99,5 @@
     ```bash
     xhost +
     ```
+- IMU data is not published
+  - update hardware firmware to 5.12.0.0
