@@ -26,5 +26,5 @@ This manual repository explain how to installation basic file or how to implemen
         - [without docker](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_implement_A_loam.md)
         - [with docker](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/LOAM.md)
       - [LIO-SAM/FAST-LIO, without docker](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_implement_LIO-SAM_and_FAST-LIO.md)
-      - [LIO-SAM, with docker](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/LIO-SAM.md)
+      - [LIO-SAM, with docker](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/LIO_SAM.md)
       - [VINS\_RGBD, with docker](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/VINS_RGBD.md)
