@@ -56,7 +56,7 @@
 
 #### With user's own LiDAR
 - Connect LiDAR
-  - Please follow this [guide](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/Ouster.md).
+  - Please follow this [page](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/Ouster.md).
   - **Note that ROS driver is already installed in the docker environment.**
 - Edit topic name in the launch file (launch/ouster.launch) (if needed)
   ```yaml

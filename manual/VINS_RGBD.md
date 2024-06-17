@@ -101,3 +101,4 @@
     ```
 - IMU data is not published
   - update hardware firmware to 5.12.0.0
+  - [related issue](https://github.com/IntelRealSense/realsense-ros/issues/3103#issuecomment-2117946982)
