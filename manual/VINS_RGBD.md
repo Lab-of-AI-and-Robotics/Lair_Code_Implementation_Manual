@@ -67,7 +67,7 @@
     depth_width:=640 depth_height:=480 \
     color_width:=640 color_height:=480 \
     align_depth:=true color_fps:=30 depth_fps:=30 \
-    enable_sync:=true clip_distance:=1.5 \
+    enable_sync:=true clip_distance:=3.0 \
     unite_imu_method:="linear_interpolation" \
     enable_gyro:=true enable_accel:=true \
     accel_fps:=250 gyro_fps:=200
@@ -78,7 +78,7 @@
     ```
   - Terminal 3 (launch VINS-RGBD)
     ```bash
-    roslaunch vins_estimator realsense_color.launch
+    roslaunch vins_estimator realsense_ours.launch
     ```
 
 ### Known issues
