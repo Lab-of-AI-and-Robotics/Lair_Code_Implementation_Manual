@@ -3,11 +3,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 #Default Settings
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y curl wget gedit
+RUN apt-get install -y curl wget gedit git
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-RUN apt-get install -y ros-noetic-desktop-full
 WORKDIR /
 RUN mkdir -p catkin_ws/src
 

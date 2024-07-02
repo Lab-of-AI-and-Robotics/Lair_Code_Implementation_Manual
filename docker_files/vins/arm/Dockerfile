@@ -3,11 +3,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Default settings
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y curl wget gedit
+RUN apt-get install -y curl wget gedit git
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-RUN apt-get install -y ros-noetic-desktop-full
 WORKDIR /
 RUN mkdir -p catkin_ws/src
 ## realsense driver
@@ -33,13 +32,13 @@ WORKDIR /Sophus/build
 RUN cmake .. && make -j8 install
 WORKDIR /
 RUN rm -rf /Sophus
+
 ## clone vins-rgbd repo
 WORKDIR /catkin_ws/src
 RUN git clone https://github.com/Lab-of-AI-and-Robotics/VINS_RGBD.git
-## build
+# build
 WORKDIR /catkin_ws
 RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make"
-# RUN catkin_make
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 ## get test dataset
 WORKDIR /

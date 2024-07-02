@@ -23,7 +23,7 @@
     -e DISPLAY=$DISPLAY -e USER=$USER \
     -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
     NVIDIA_VISIBLE_DEVICES=all \
-    --net host --gpus all --privileged \
+    --net host --privileged \
     --name lio lio:demo /bin/bash
   ```
 

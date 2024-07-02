@@ -3,11 +3,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 #Default Settings
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y curl wget gedit
+RUN apt-get install -y curl wget gedit git
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-RUN apt-get install -y ros-noetic-desktop-full
 WORKDIR /
 RUN mkdir -p catkin_ws/src
 
@@ -17,6 +16,7 @@ RUN apt-get install -y ros-noetic-robot-localization
 RUN apt-get install -y ros-noetic-robot-state-publisher
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:borglab/gtsam-release-4.0
+RUN apt-get update
 RUN apt-get install -y libgtsam-dev libgtsam-unstable-dev
 
 # LIO-SAM
@@ -38,7 +38,6 @@ RUN ln -s /usr/include/lz4hc.h /usr/include/flann/ext/lz4hc.h
 RUN git clone https://github.com/chennuo0125-HIT/lidar_imu_calib.git
 
 # build
-# RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make"
 RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make --cmake-args -DCMAKE_BUILD_TYPE=Release"
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 

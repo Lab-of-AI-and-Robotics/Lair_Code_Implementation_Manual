@@ -32,19 +32,19 @@ WORKDIR /Sophus/build
 RUN cmake .. && make -j8 install
 WORKDIR /
 RUN rm -rf /Sophus
+
 ## clone vins-rgbd repo
 WORKDIR /catkin_ws/src
 RUN git clone https://github.com/Lab-of-AI-and-Robotics/VINS_RGBD.git
-## build
-# WORKDIR /catkin_ws
-# RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make"
-# # RUN catkin_make
-# RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
-# ## get test dataset
-# WORKDIR /
-# RUN mkdir dataset
-# WORKDIR /dataset
-# RUN wget -O vins_test.bag "https://star-center.shanghaitech.edu.cn/seafile/d/0ea45d1878914077ade5/files/?p=/Normal.bag&dl=1"
-# RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; rosbag decompress vins_test.bag"
-# RUN rm vins_test.orig.bag
-# WORKDIR /
+# build
+WORKDIR /catkin_ws
+RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make"
+RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+## get test dataset
+WORKDIR /
+RUN mkdir dataset
+WORKDIR /dataset
+RUN wget -O vins_test.bag "https://star-center.shanghaitech.edu.cn/seafile/d/0ea45d1878914077ade5/files/?p=/Normal.bag&dl=1"
+RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; rosbag decompress vins_test.bag"
+RUN rm vins_test.orig.bag
+WORKDIR /
