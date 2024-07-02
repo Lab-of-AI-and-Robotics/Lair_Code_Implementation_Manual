@@ -5,10 +5,15 @@
 - Build Docker images from Dockerfile
   - ORB-SLAM3 and its requirements will be installed in the docker image.
   - Additionally, a demo rosbag file (EUROC dataset MH02) will be downloaded.
-    ```bash
-    docker build docker_files/ORB-SLAM3 -t orb:demo
-    ```
-
+    - For amd architecture processors
+        ```bash
+        docker build docker_files/ORB-SLAM3/amd -t orb:demo
+        ```
+    - For arm architecture processors (jetson)
+        ```bash
+        docker build docker_files/ORB-SLAM3/arm -t orb:demo
+        ```
+dfsdf
 - Make container
     ```bash
     docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
