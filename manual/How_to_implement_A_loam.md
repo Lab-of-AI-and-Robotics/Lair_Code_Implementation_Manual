@@ -5,10 +5,10 @@ last update 2022 8.01 by kungsu kang. <br>
 ## 1. A-loam install and run
 
   1. install dependence
-  - **ROS** : see ROS install Document
+  - **ROS** : see [ROS install Document](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/How_to_install_ros.md)
   - **Ceres-Solver** : [http://ceres-solver.org/installation.html](http://ceres-solver.org/installation.html)
   input command line in terminal
-  ```
+  ```bash
   # install dependence for ceres
 
   sudo apt-get install cmake
@@ -31,13 +31,13 @@ last update 2022 8.01 by kungsu kang. <br>
 
   2. Download A-loam and install
   input command line in terminal
-  ```
+  
   cd ~/catkin_ws/src
   git clone https://github.com/HKUST-Aerial-Robotics/A-LOAM.git
   cd ../
   catkin_make
   source ~/catkin_ws/devel/setup.bash
-  ```
+  
   <br/>
 
   3. run after install complete (test Velodyne VLP_16)

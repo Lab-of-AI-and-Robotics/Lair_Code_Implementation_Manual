@@ -6,11 +6,14 @@
 - Build docker image from Dockerfile
   - VINS-RGBD and requirements will be installed in the docker image.
   - Additionally, a rosbag file for demo will be downloaded.
-
-    ```bash
-    cd docker_files/vins
-    docker build -t vins:demo .
-    ```
+    - For amd architecture processors
+        ```bash
+        docker build docker_files/vins/amd -t vins:demo
+        ```
+    - For arm architecture processors (jetson)
+      ```bash
+      docker build docker_files/vins/arm -t vins:demo
+      ```
 
 - Make container
     ```bash

@@ -12,9 +12,14 @@
 - Build docker image from Dockerfile
   - LOAM and requirements will be installed in the docker image.
   - Additionally, a rosbag file for demo will be downloaded.
-    ```bash
-    docker build docker_files/LOAM -t loam:demo
-    ```
+    - For amd architecture processors
+      ```bash
+      docker build docker_files/LOAM/amd -t loam:demo
+      ```
+    - For arm architecture processors (jetson)
+      ```bash
+      docker build docker_files/LOAM/arm -t loam:demo
+      ```
 
 - Make container
    ```bash

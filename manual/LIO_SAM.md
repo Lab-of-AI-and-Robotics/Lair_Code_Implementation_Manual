@@ -6,9 +6,14 @@
 
 - Build docker image from Dockerfile
     - LIO_SAM and requirements will be installed in the docker image.
-    ```bash
-    docker build docker_files/LIO-SAM -t lio:demo
-    ```
+      - For amd architecture processors
+        ```bash
+        docker build docker_files/LIO-SAM/amd -t lio:demo
+        ```
+      - For arm architecture processors (jetson)
+        ```bash
+        docker build docker_files/LIO-SAM/arm -t lio:demo
+        ```
 
 - Make container
   
