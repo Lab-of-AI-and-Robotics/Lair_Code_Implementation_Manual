@@ -10,6 +10,9 @@ RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 WORKDIR /
 RUN mkdir -p catkin_ws/src
 
+# full ros
+RUN apt-get install -y ros-noetic-desktop-full
+
 # Dependencies
 RUN apt-get install -y ros-noetic-navigation
 RUN apt-get install -y ros-noetic-robot-localization
@@ -35,7 +38,7 @@ RUN mv /usr/include/flann/ext/lz4.h /usr/include/flann/ext/lz4.h.bak
 RUN mv /usr/include/flann/ext/lz4hc.h /usr/include/flann/ext/lz4.h.bak
 RUN ln -s /usr/include/lz4.h /usr/include/flann/ext/lz4.h
 RUN ln -s /usr/include/lz4hc.h /usr/include/flann/ext/lz4hc.h
-RUN git clone https://github.com/chennuo0125-HIT/lidar_imu_calib.git
+RUN git clone https://github.com/Lab-of-AI-and-Robotics/lidar_imu_calib.git
 
 # build
 RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make --cmake-args -DCMAKE_BUILD_TYPE=Release"

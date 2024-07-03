@@ -10,6 +10,9 @@ RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 WORKDIR /
 RUN mkdir -p catkin_ws/src
 
+# full ros
+RUN apt-get install -y ros-noetic-desktop-full
+
 # A-LOAM
 ## Ceres
 ### dependencies
@@ -36,10 +39,10 @@ RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make --cma
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 # Download Demo data
-WORKDIR /
-RUN mkdir dataset
-WORKDIR /dataset
-RUN wget -O ouster_64.bag "https://data.ouster.io/sample-data-1.13/OS1-64/OS1-64_freeway2.bag"
+#WORKDIR /
+#RUN mkdir dataset
+#WORKDIR /dataset
+#RUN wget -O ouster_64.bag "https://data.ouster.io/sample-data-1.13/OS1-64/OS1-64_freeway2.bag"
 
 # init
 WORKDIR /

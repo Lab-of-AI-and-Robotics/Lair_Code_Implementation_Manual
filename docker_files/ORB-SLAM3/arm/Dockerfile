@@ -1,10 +1,11 @@
 # Modified base img
-FROM osrf/ros:noetic-desktop-full
+FROM arm64v8/ros:noetic-ros-base
 ARG ROS_DISTRO=noetic
 RUN apt-get update
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y gnupg2 curl lsb-core vim wget python3-pip libpng16-16 libjpeg-turbo8 libtiff5 nano
+RUN apt-get install -y gnupg2 curl lsb-core vim wget python3-pip libpng16-16 libjpeg-turbo8 libtiff5 nano git
+RUN apt-get install -y ros-noetic-desktop-full
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 
 RUN apt-get install -y \
