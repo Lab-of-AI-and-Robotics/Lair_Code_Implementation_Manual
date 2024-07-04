@@ -3,14 +3,33 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Default settings
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y curl wget gedit git
+RUN apt-get install -y curl wget gedit git net-tools
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 WORKDIR /
 RUN mkdir -p catkin_ws/src
-## realsense driver
-RUN apt-get install -y ros-noetic-realsense2-camera
+
+# ros full pkg
+RUN apt-get install -y ros-noetic-desktop-full
+
+# realsense driver
+## realsense-sdk
+#RUN git clone https://github.com/IntelRealSense/librealsense.git
+#WORKDIR /librealsense
+#RUN git checkout v2.50.0
+#RUN apt-get install git libssl-dev libusb-1.0-0-dev libudev-dev pkg-config libgtk-3-dev -y
+#RUN ./scripts/setup_udev_rules.sh  
+#RUN mkdir build
+#WORKDIR /librealsense/build
+#RUN /bin/bash -c "cmake .. -DBUILD_EXAMPLES=true -DCMAKE_BUILD_TYPE=release -DFORCE_RSUSB_BACKEND=false -#DBUILD_WITH_CUDA=true && make -j$(($(nproc)-1)) && sudo make install"
+## ros driver
+#RUN mkdir -p /realsense_ws/src
+#WORKDIR /realsense_ws/src
+#RUN git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
+#WORKDIR /realsense_ws
+#RUN catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release
+#RUN catkin_make install
 
 # VINS-RGBD
 ## Ceres
