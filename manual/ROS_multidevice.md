@@ -40,8 +40,8 @@
     ```
 - Specify IP address of ROS_master and ROS_host. (In this manual, we consider local environment as ROS_master, and docker environment as ROS_host)
   ```bash
-  export ROS_MASTER_URI=http://172.17.0.1:11311
-  export ROS_IP=172.17.0.1
+  export ROS_MASTER_URI=http://172.17.0.1:11311 # write local environment's ip address here
+  export ROS_IP=172.17.0.1 # write local environment's ip address here
   export ROS_HOSTNAME=$ROS_IP
   ```
 #### For ROS_hosts (docker containers)
