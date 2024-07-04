@@ -1,37 +1,40 @@
 # LOAM with Ouster 64ch
 2024.06.15, updated by Seongbo Ha.
 
-### Contents
+## Contents
   - Environmental Settings
   - Run
     - with demo data
     - with real sensor
 
-### Environmental Settings (Docker)
+## Environmental Settings (Docker)
 
-- Build docker image from Dockerfile
-  - LOAM and requirements will be installed in the docker image.
-  - Additionally, a rosbag file for demo will be downloaded.
-    - For amd architecture processors
-      ```bash
-      docker build docker_files/LOAM/amd -t loam:demo
-      ```
-    - For arm architecture processors (jetson)
-      ```bash
-      docker build docker_files/LOAM/arm -t loam:demo
-      ```
-
-- Make container
-   ```bash
-   docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -e DISPLAY=$DISPLAY -e USER=$USER \
-    -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
-    NVIDIA_VISIBLE_DEVICES=all \
-    --net host --privileged \
-    --name loam loam:demo /bin/bash
+### Build docker image from Dockerfile
+- LOAM and requirements will be installed in the docker image.
+- Additionally, a rosbag file for demo will be downloaded.
+  - For amd architecture processors
+    ```bash
+    docker build docker_files/LOAM/amd -t loam:demo
+    ```
+  - For arm architecture processors (jetson)
+    ```bash
+    docker build docker_files/LOAM/arm -t loam:demo
     ```
 
-### RUN
+### Make container
+```bash
+docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
+-e DISPLAY=$DISPLAY -e USER=$USER \
+-e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
+NVIDIA_VISIBLE_DEVICES=all \
+--net host --privileged \
+--name loam loam:demo /bin/bash
+```
+
+### Transporting messages between the local environment and a docker container
+Follow this [manual](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/ROS_multidevice.md).
+
+## RUN
 - To run and visualize A-LOAM, we need 2 terminals.
   - One to launch A-LOAM
   - One to play rosbag file
@@ -42,7 +45,7 @@
   Like this
   ![loam](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/assets/34827206/2c9eb699-2cab-4bcf-bfd3-563fcc4095b6)
 
-#### With demo rosbag file
+### With demo rosbag file
 - Rosbag file for demo is downloaded in the container. (/dataset/vins_test.bag)
 - As mentioned above, we use two separate terminals
   - Terminal 1 (launch A-LOAM)
@@ -59,7 +62,7 @@
   - Expected result
     ![Screenshot from 2024-05-30 10-57-52](https://github.com/Lab-of-AI-and-Robotics/A-LOAM_ouster64ch/assets/34827206/27698594-7d28-4d6a-b2df-06ed7368b278)
 
-#### With user's own LiDAR
+### With user's own LiDAR
 - Connect LiDAR
   - Please follow this [page](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/Ouster.md).
   - **Note that ROS driver is already installed in the docker environment.**
@@ -87,7 +90,7 @@
     roslaunch ouster_ros sensor.launch sensor_hostname:="your address" udp_dest:="your address"
     ```
 
-### Known issues
+## Known issues
 - "docker exec -it loam /bin/bash" is not working with below error message.
     ```bash
     Error response from daemon: Container 13b80ddc4587e65441f690bc6c011eeb5626b01addabb4ebcb2c0386c595135b is not running

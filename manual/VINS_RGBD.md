@@ -1,9 +1,9 @@
 # VINS_RGBD
 2024.06.15, updated by Seongbo Ha.
 
-### Environmental Settings (Docker)
+## Environmental Settings (Docker)
 
-- Build docker image from Dockerfile
+### Build docker image from Dockerfile
   - VINS-RGBD and requirements will be installed in the docker image.
   - Additionally, a rosbag file for demo will be downloaded.
     - For amd architecture processors
@@ -15,19 +15,21 @@
       docker build docker_files/vins/arm -t vins:demo
       ```
 
-- Make container
-    ```bash
-    docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v /dev:/dev \
-    -e DISPLAY=$DISPLAY -e USER=$USER \
-    -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
-    NVIDIA_VISIBLE_DEVICES=all \
-    --net host --privileged \
-    --name vins vins:demo /bin/bash
-    ```
-<br>
+### Make container
+  ```bash
+  docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /dev:/dev \
+  -e DISPLAY=$DISPLAY -e USER=$USER \
+  -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
+  NVIDIA_VISIBLE_DEVICES=all \
+  --net host --privileged \
+  --name vins vins:demo /bin/bash
+  ```
 
-### RUN
+### Transporting messages between the local environment and a docker container
+Follow this [manual](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/ROS_multidevice.md).
+
+## RUN
 - To run and visualize VINS-RGBD, we need 3 terminals.
   - One to launch VINS-RGBD.
   - One to run rviz for visualization.
@@ -39,7 +41,7 @@
     Like this
     ![Screenshot from 2024-05-25 19-55-25](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/assets/34827206/a5176f80-103c-48da-a9d3-6469d6a250f7)
 
-#### With Demo rosbag file
+### With Demo rosbag file
 - Rosbag file for demo is downloaded in the container. (/dataset/vins_test.bag)
 - As mentioned above, we use three separate terminals
   - Terminal 1 (launch VINS-RGBD)
@@ -59,7 +61,7 @@
 - Expected results
   ![Screenshot from 2024-05-25 20-32-29](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/assets/34827206/1c1c29ee-78c0-4a5c-ac0f-10f6bac0a929)
 
-#### With realsense 435i
+### With realsense 435i
 - Connect realsense camera.
 - ROS driver for realsense camera is already installed in the docker env.
 - We need three separate terminals
@@ -84,7 +86,7 @@
     roslaunch vins_estimator realsense_ours.launch
     ```
 
-### Known issues
+## Known issues
 - "docker exec -it vins /bin/bash" is not working with below error message.
     ```bash
     Error response from daemon: Container 13b80ddc4587e65441f690bc6c011eeb5626b01addabb4ebcb2c0386c595135b is not running

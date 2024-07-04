@@ -4,29 +4,31 @@
 
 ## Environmental Settings (Docker)
 
-- Build docker image from Dockerfile
-    - LIO_SAM and requirements will be installed in the docker image.
-      - For amd architecture processors
-        ```bash
-        docker build docker_files/LIO-SAM/amd -t lio:demo
-        ```
-      - For arm architecture processors (jetson)
-        ```bash
-        docker build docker_files/LIO-SAM/arm -t lio:demo
-        ```
+### Build docker image from Dockerfile
+- LIO_SAM and requirements will be installed in the docker image.
+  - For amd architecture processors
+    ```bash
+    docker build docker_files/LIO-SAM/amd -t lio:demo
+    ```
+  - For arm architecture processors (jetson)
+    ```bash
+    docker build docker_files/LIO-SAM/arm -t lio:demo
+    ```
 
-- Make container
+### Make container
   
-  ```
-    docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v /dev:/dev \
-    -e DISPLAY=$DISPLAY -e USER=$USER \
-    -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
-    NVIDIA_VISIBLE_DEVICES=all \
-    --net host --privileged \
-    --name lio lio:demo /bin/bash
-  ```
+```bash
+  docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /dev:/dev \
+  -e DISPLAY=$DISPLAY -e USER=$USER \
+  -e runtime=nvidia -e NVIDIA_DRIVER_CAPABILITIES=all -e \
+  NVIDIA_VISIBLE_DEVICES=all \
+  --net host --privileged \
+  --name lio lio:demo /bin/bash
+```
 
+### Transporting messages between the local environment and a docker container
+Follow this [manual](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/ROS_multidevice.md).
   
 ## RUN
 ### With demo data
