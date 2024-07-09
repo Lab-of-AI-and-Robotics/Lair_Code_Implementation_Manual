@@ -4,7 +4,7 @@ ARG ROS_DISTRO=noetic
 RUN apt-get update
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -y gnupg2 curl lsb-core vim wget python3-pip libpng16-16 libjpeg-turbo8 libtiff5 nano
+RUN apt-get install -y gnupg2 curl lsb-core vim wget python3-pip libpng16-16 libjpeg-turbo8 libtiff5 nano net-tools
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 
 RUN apt-get install -y \

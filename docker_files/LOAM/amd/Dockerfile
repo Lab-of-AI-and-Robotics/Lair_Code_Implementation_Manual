@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 #Default Settings
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y curl wget gedit git
+RUN apt-get install -y curl wget gedit git net-tools
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 RUN apt-get update
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
