@@ -85,6 +85,9 @@ If you're using both the local environment and Docker container together, follow
     ```bash
     roslaunch vins_estimator realsense_ours.launch
     ```
+  - Expected Results
+    
+    [![Video Label](http://img.youtube.com/vi/JUrakHYpFtg/0.jpg)](https://youtu.be/JUrakHYpFtg)
 
 ## Known issues
 - "docker exec -it vins /bin/bash" is not working with below error message.
@@ -105,6 +108,6 @@ If you're using both the local environment and Docker container together, follow
     xhost +
     ```
 - IMU data is not published
-  - update hardware firmware to 5.12.7.0
+  - update hardware firmware to 5.12.7.100
   - [related issue](https://github.com/IntelRealSense/realsense-ros/issues/3103#issuecomment-2117946982)
   - [firmware releases](https://dev.intelrealsense.com/docs/firmware-releases-d400)
