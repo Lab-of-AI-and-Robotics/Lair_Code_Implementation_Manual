@@ -105,5 +105,6 @@ If you're using both the local environment and Docker container together, follow
     xhost +
     ```
 - IMU data is not published
-  - update hardware firmware to 5.12.0.0
+  - update hardware firmware to 5.12.7.0
   - [related issue](https://github.com/IntelRealSense/realsense-ros/issues/3103#issuecomment-2117946982)
+  - [firmware releases](https://dev.intelrealsense.com/docs/firmware-releases-d400)
