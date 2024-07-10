@@ -31,8 +31,9 @@ NVIDIA_VISIBLE_DEVICES=all \
 --name loam loam:demo /bin/bash
 ```
 
-### Transporting messages between the local environment and a docker container
-Follow this [manual](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/ROS_multidevice.md).
+### Transporting messages between the local environment and a docker container (optional)
+(SLAM tutorial 진행중인 학부인턴 학생분들은 이 과정 생략해주세요.)<br>
+If you're using both the local environment and Docker container together, follow this [manual](https://github.com/Lab-of-AI-and-Robotics/Lair_Code_Implementation_Manual/blob/main/manual/ROS_multidevice.md).
 
 ## RUN
 - To run and visualize A-LOAM, we need 2 terminals.
