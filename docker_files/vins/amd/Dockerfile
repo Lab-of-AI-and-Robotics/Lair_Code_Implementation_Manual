@@ -9,8 +9,20 @@ RUN apt-get update
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 WORKDIR /
 RUN mkdir -p catkin_ws/src
-## realsense driver
-RUN apt-get install -y ros-noetic-realsense2-camera
+# realsense driver
+WORKDIR /
+RUN apt-get install git libssl-dev libusb-1.0-0-dev libudev-dev pkg-config libgtk-3-dev ros-noetic-ddynamic-reconfigure -y
+RUN git clone https://github.com/IntelRealSense/librealsense.git
+WORKDIR /librealsense
+RUN git checkout v2.50.0
+RUN mkdir build
+WORKDIR /librealsense/build
+RUN cmake .. -DBUILD_EXAMPLES=true -DCMAKE_BUILD_TYPE=release -DFORCE_RSUSB_BACKEND=false -DBUILD_WITH_CUDA=false && make -j$(($(nproc)-1)) && sudo make install
+RUN mkdir -p /realsense_ws/src
+WORKDIR /realsense_ws/src
+RUN git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
+WORKDIR /realsense_ws
+RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /realsense_ws; catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release"
 
 # VINS-RGBD
 ## Ceres
@@ -40,6 +52,7 @@ RUN git clone https://github.com/Lab-of-AI-and-Robotics/VINS_RGBD.git
 WORKDIR /catkin_ws
 RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make"
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+RUN echo "source /realsense_ws/devel/setup.bash" >> ~/.bashrc
 ## get test dataset
 WORKDIR /
 RUN mkdir dataset
