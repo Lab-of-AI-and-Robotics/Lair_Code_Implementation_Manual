@@ -83,7 +83,7 @@ If you're using both the local environment and Docker container together, follow
     color_width:=640 color_height:=480 \
     align_depth:=true color_fps:=30 depth_fps:=30 \
     enable_sync:=true clip_distance:=3.0 \
-    unite_imu_method:="linear_interpolation" \
+    unite_imu_method:="copy" \
     enable_gyro:=true enable_accel:=true \
     accel_fps:=250 gyro_fps:=200
     ```
