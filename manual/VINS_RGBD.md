@@ -4,15 +4,25 @@
 ## Environmental Settings (Docker)
 
 ### Build docker image from Dockerfile
-  - VINS-RGBD and requirements will be installed in the docker image.
-  - Additionally, a rosbag file for demo will be downloaded.
-    - For amd architecture processors
-        ```bash
-        docker build docker_files/vins/amd -t vins:demo
-        ```
-    - For arm architecture processors (jetson)
+  - For amd architecture processors
+    - VINS-RGBD, Realsense-sdk/ROS driver and requirements will be installed in the docker image.
+    - Additionally, a rosbag file for demo will be downloaded.
+      ```bash
+      docker build docker_files/vins/amd -t vins:demo
+      ```
+  - For arm architecture processors (jetson)
+    - VINS-RGBD and requirements, **excluding Realsense-sdk/ROS driver** will be installed in the docker image.
+    - Additionally, a rosbag file for demo will be downloaded.
       ```bash
       docker build docker_files/vins/arm -t vins:demo
+      ```
+    - For jetson, we have to install Realsense-sdk/ROS driver **in the local environment** manually.
+      - Realsense-sdk/ROS driver installed by using simple command "sudo apt-get install ros-$ROS_DISTRO-realsense2-camera" doesn't output imu data.
+      - So we have to install Realsense-sdk (v.2.50.0) -> ROS driver manually.
+      - For this, use support_files/install_realsense_driver_jetson.sh in this repo.
+      ```bash
+      # in the local environment
+      bash support_files/install_realsense_driver_jetson.sh
       ```
 
 ### Make container
