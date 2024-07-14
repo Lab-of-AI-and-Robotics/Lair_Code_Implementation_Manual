@@ -67,6 +67,7 @@ RUN git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
 WORKDIR /realsense_ws
 RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /realsense_ws; catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release"
 
+WORKDIR /
 RUN git clone https://github.com/Lab-of-AI-and-Robotics/ORB_SLAM3.git
 RUN echo "export ROS_PACKAGE_PATH=/opt/ros/noetic/share:PATH:/ORB_SLAM3/Examples_old/ROS" >> ~/.bashrc
 WORKDIR /ORB_SLAM3
@@ -76,7 +77,7 @@ RUN ./build.sh
 ## symbolic link
 RUN rm /usr/bin/python && ln -s /usr/bin/python3.8 /usr/bin/python
 ## build
-RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; export ROS_PACKAGE_PATH=/opt/ros/noetic/share:PATH:/ORB_SLAM3/Examples_old/ROS; ./build_ros.sh"
+RUN /bin/bash -c ". /opt/ros/noetic/setup.bash && export ROS_PACKAGE_PATH=/opt/ros/noetic/share:PATH:/ORB_SLAM3/Examples_old/ROS && ./build_ros.sh"
 RUN echo "source /ORB_SLAM3/Examples_old/ROS/ORB_SLAM3/build/devel/setup.bash" >> ~/.bashrc
 RUN echo "source /realsense_ws/devel/setup.bash" >> ~/.bashrc
 # # download demo dataset

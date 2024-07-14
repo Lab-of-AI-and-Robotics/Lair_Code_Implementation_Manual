@@ -18,11 +18,8 @@ RUN git checkout v2.50.0
 RUN mkdir build
 WORKDIR /librealsense/build
 RUN cmake .. -DBUILD_EXAMPLES=true -DCMAKE_BUILD_TYPE=release -DFORCE_RSUSB_BACKEND=false -DBUILD_WITH_CUDA=false && make -j$(($(nproc)-1)) && sudo make install
-RUN mkdir -p /realsense_ws/src
-WORKDIR /realsense_ws/src
+WORKDIR /catkin_ws/src
 RUN git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
-WORKDIR /realsense_ws
-RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /realsense_ws; catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release"
 
 # VINS-RGBD
 ## Ceres
@@ -50,9 +47,9 @@ WORKDIR /catkin_ws/src
 RUN git clone https://github.com/Lab-of-AI-and-Robotics/VINS-RGBD.git
 # build
 WORKDIR /catkin_ws
-RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make"
+RUN /bin/bash -c ". /opt/ros/noetic/setup.bash; cd /catkin_ws; catkin_make -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release"
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
-RUN echo "source /realsense_ws/devel/setup.bash" >> ~/.bashrc
+
 ## get test dataset
 WORKDIR /
 RUN mkdir dataset

@@ -43,14 +43,15 @@ If you're using both the local environment and Docker container together, follow
 - RUN ORB-SLAM3 and play demo rosbag file.
     - Terminal 1
         ```bash
-        roslaunch ORB_SLAM3 euroc_stereo.launch
+        source /ORB_SLAM3/Examples_old/ROS/ORB_SLAM3/build/devel/setup.bash
+        roslaunch ORB_SLAM3 euroc_stereoimu.launch
         ```
     - Terminal 2
         ```bash
         rosbag play /dataset/test.bag
         ```
 ### With Realsense d435i
-- Stream data using ROS driver
+- Stream data using ROS driver (RGBD)
     ```bash
     roslaunch realsense2_camera rs_camera.launch \
         depth_width:=640 depth_height:=480 \
@@ -62,3 +63,11 @@ If you're using both the local environment and Docker container together, follow
         accel_fps:=250 gyro_fps:=200
     ```
 - RUN ORB-SLAM3
+    - RGBD
+        ```bash
+        roslaunch ORB_SLAM3 realsense_rgbd.launch
+        ```
+    - RGBD-inertial
+        ```bash
+        roslaunch ORB_SLAM3 realsense_rgbdimu.launch
+        ```
